@@ -4,7 +4,7 @@ pipeline {
         stage('Build Image') { 
             steps {
                 echo 'Building docker image in local docker library...'
-                sh './gradle bootBuildImage'
+                sh 'gradle bootBuildImage'
             }
         }
         stage('Deploy') { 
