@@ -20,6 +20,6 @@ spec:
     spec:
       containers:
       - name: spring-music-app
-        image: tkgi-spring-music-pipeline:1.0
+        image: savmas22/vmware:tkgi-spring-music-pipeline
         ports:
           - containerPort: 8080
