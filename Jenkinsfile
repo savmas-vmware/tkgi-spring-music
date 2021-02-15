@@ -19,7 +19,7 @@ pipeline {
         stage('Deploy to TKGi Cluster') { 
             steps {
                 echo 'Deploy application to TKGi...'
-                sh 'tkgi login -a api.tkgi.platformdemosm.com -u admin -p ${TKGI_ADMIN_PASS} --ca-cert /tmp/ssh/root_ca_cert.pem'
+                sh '/usr/local/bin/tkgi login -a api.tkgi.platformdemosm.com -u admin -p ${TKGI_ADMIN_PASS} --ca-cert /tmp/ssh/root_ca_cert.pem'
                 sh '/usr/local/bin/tkgi get-credentials demo-cluster'
                 sh '/usr/local/bin/kubectl apply -f spring-music-deploy.yml'
                 sh '/usr/local/bin/kubectl apply -f spring-music-lb-service.yml'
