@@ -5,7 +5,6 @@ pipeline {
             steps {
                 echo 'Delete local image and tag...'
                 sh 'docker image rm tkgi-spring-music-pipeline:1.0'
-                sh 'docker image rm savmas22/tkgi-spring-music-pipeline:latest'
                 echo 'Building docker image in local docker library...'
                 sh './gradlew bootBuildImage'
                 echo 'Push docker image to docker hub...'
