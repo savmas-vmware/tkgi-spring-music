@@ -3,8 +3,6 @@ pipeline {
     stages {
         stage('Build Image') { 
             steps {
-                echo 'Delete local image and tag...'
-                sh 'docker image rm tkgi-spring-music-pipeline:1.0'
                 echo 'Building docker image in local docker library...'
                 sh './gradlew bootBuildImage'
                 echo 'Push docker image to docker hub...'
@@ -23,7 +21,10 @@ pipeline {
                 sh '/usr/local/bin/kubectl apply -f spring-music-lb-service.yml'
                 sh '/usr/local/bin/kubectl set image deployments/spring-music-deploy spring-music-app=savmas22/tkgi-spring-music-pipeline:${BUILD_NUMBER}'
                 echo 'Deployment Completed!'
+                echo 'Delete local image and tag...'
+                sh 'docker image rm tkgi-spring-music-pipeline:1.0'
                 sh 'docker image rm savmas22/tkgi-spring-music-pipeline:${BUILD_NUMBER}'
+                sh 'docker image rm savmas22/tkgi-spring-music-pipeline:latest'
             }
         }
     }
