@@ -20,6 +20,6 @@ spec:
     spec:
       containers:
       - name: spring-music-app
-        image: kodekloud/examplevotingapp_vote:v1
+        image: tkgi-spring-music-pipeline:1.0
         ports:
-          - containerPort: 80
+          - containerPort: 8080
