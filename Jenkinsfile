@@ -9,8 +9,8 @@ pipeline {
                 sh './gradlew bootBuildImage'
                 echo 'Push docker image to docker hub...'
                 sh 'docker login -u savmas22 -p Rinku@304'
-                sh 'docker tag tkgi-spring-music-pipeline:1.0 savmas22/tkgi-spring-music-pipeline:latest'
-                sh 'docker push savmas22/tkgi-spring-music-pipeline:latest'
+                sh 'docker tag tkgi-spring-music-pipeline:1.0 savmas22/tkgi-spring-music-pipeline:${BUILD_NUMBER}'
+                sh 'docker push savmas22/tkgi-spring-music-pipeline:${BUILD_NUMBER}'
             }
         }
         stage('Deploy') { 
@@ -20,7 +20,7 @@ pipeline {
                 sh '/usr/local/bin/tkgi get-credentials demo-cluster'
                 sh '/usr/local/bin/kubectl apply -f spring-music-deploy.yml'
                 sh '/usr/local/bin/kubectl apply -f spring-music-lb-service.yml'
-                sh '/usr/local/bin/kubectl set image deployments/spring-music-deploy spring-music-app=savmas22/tkgi-spring-music-pipeline:latest'
+                sh '/usr/local/bin/kubectl set image deployments/spring-music-deploy spring-music-app=savmas22/tkgi-spring-music-pipeline:${BUILD_NUMBER}'
                 echo 'Deployment Completed!'
             }
         }
