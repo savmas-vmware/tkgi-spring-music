@@ -5,6 +5,9 @@ pipeline {
             steps {
                 echo 'Building docker image in local docker library...'
                 sh './gradlew bootBuildImage'
+                sh 'docker login -u savmas22 -p Rinku@304'
+                sh 'docker tag tkgi-spring-music-pipeline:1.0 savmas22/vmware:tkgi-spring-music-pipeline'
+                sh 'docker push savmas22/vmware:tkgi-spring-music-pipeline'
             }
         }
         stage('Deploy') { 
