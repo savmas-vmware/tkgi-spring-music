@@ -10,7 +10,7 @@
         "_class": "org.cloudfoundry.samples.music.domain.Album",
         "artist": "The Beach Boys",
         "title": "Pet Sounds",
-        "releaseYear": "1966",
+        "releaseYear": "1967",
         "genre": "Rock"
     },
     {
