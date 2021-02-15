@@ -3,7 +3,7 @@
         "_class": "org.cloudfoundry.samples.music.domain.Album",
         "artist": "Nirvana",
         "title": "Nevermind",
-        "releaseYear": "1992",
+        "releaseYear": "1993",
         "genre": "Rock"
     },
     {
