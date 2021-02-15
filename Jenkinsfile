@@ -21,6 +21,7 @@ pipeline {
                 echo 'Deploy application to TKGi...'
                 sh '/usr/local/bin/tkgi login -a api.tkgi.platformdemosm.com -u admin -p ${TKGI_ADMIN_PASS} --ca-cert /tmp/ssh/root_ca_cert.pem'
                 sh '/usr/local/bin/tkgi get-credentials demo-cluster'
+                sh '/usr/local/bin/kubectl delete deployment spring-music-deploy'
                 sh '/usr/local/bin/kubectl apply -f spring-music-deploy.yml'
                 sh '/usr/local/bin/kubectl apply -f spring-music-lb-service.yml'
                 sh '/usr/local/bin/kubectl set image deployments/spring-music-deploy spring-music-app=savmas22/tkgi-spring-music-pipeline:${BUILD_NUMBER}'
